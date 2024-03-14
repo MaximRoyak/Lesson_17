@@ -2,12 +2,8 @@ import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.AndroidElement;
 import io.appium.java_client.remote.AndroidMobileCapabilityType;
 import io.appium.java_client.remote.MobileCapabilityType;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.TestInstance;
+import io.qameta.allure.Step;
+import org.junit.jupiter.api.*;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.remote.DesiredCapabilities;
@@ -23,8 +19,8 @@ public class TestApp {
 
     static AndroidDriver<AndroidElement> driver = null;
 
-    @Before
-    public void initialize() {
+    @BeforeAll
+    public static void initialize() {
         DesiredCapabilities capabilities = new DesiredCapabilities();
         capabilities.setCapability(MobileCapabilityType.DEVICE_NAME, "Pixel 6 API 31");
         capabilities.setCapability(AndroidMobileCapabilityType.APP_PACKAGE, "com.google.android.calculator");
@@ -39,6 +35,8 @@ public class TestApp {
     }
 
     @Test
+    @DisplayName("Sum Test")
+    @Step("Performing sum operation")
     public void sumTest() {
         driver.findElement(By.id("com.google.android.calculator:id/digit_6")).click();
         driver.findElement(By.id("com.google.android.calculator:id/op_add")).click();
@@ -50,6 +48,8 @@ public class TestApp {
         assertEquals("9", result);
     }
     @Test
+    @DisplayName("Multiply Test")
+    @Step("Performing multiplication operation")
     public void multiplyTest(){
         driver.findElement(By.id("com.google.android.calculator:id/digit_6")).click();
         driver.findElement(By.id("com.google.android.calculator:id/op_mul")).click();
@@ -61,6 +61,8 @@ public class TestApp {
         assertEquals("18", result);
     }
     @Test
+    @DisplayName("Subtract Test")
+    @Step("Performing subtraction operation")
     public void subtractTest(){
         driver.findElement(By.id("com.google.android.calculator:id/digit_6")).click();
         driver.findElement(By.id("com.google.android.calculator:id/op_sub")).click();
@@ -72,6 +74,8 @@ public class TestApp {
         assertEquals("3", result);
     }
     @Test
+    @DisplayName("Divide Test")
+    @Step("Performing division operation")
     public void divideTest(){
         driver.findElement(By.id("com.google.android.calculator:id/digit_6")).click();
         driver.findElement(By.id("com.google.android.calculator:id/op_div")).click();
